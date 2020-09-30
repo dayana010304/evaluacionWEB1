@@ -27,9 +27,9 @@
         </div>
     </nav>
     <div class="container-fluid">
-        <h1 class="text-center"><img src="img/postobon.png" alt="Postobón" width="500px"></h1>
+        <h1 class="text-center"><img src="img/postobon.png" alt="Postobón" width="250px"></h1>
         <h4 class="text-center mt-3">Ingresa el número de horas trabajadas para conocer su nómina semanal</h4>
-        <form action="ejercicio4.php" method="POST">
+        <form action="ejercicio3.php" method="POST">
 
             <div class="form-group row justify-content-center">
                 <label for="hours">Horas laboradas esta semana</label>
