@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">EXAMEN PHP</a>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -27,6 +28,9 @@
         </div>
     </nav>
     <div class="container-fluid">
+    <h1 class="text-center">Gimnasio Bodytech</h1>
+    <p class="text-center">Ingresa tu peso y estatura para cualcular el índice de masa corporal.
+        </p>
         <form class="mt-3" action="ejercicio2.php" method="POST">
             <div class="form-group row mt-3 justify-content-center">
                 <label for="peso">Peso</label>
@@ -45,29 +49,47 @@
             </div>
         </form>
 
-        <?php
-            if(isset($_POST["botonCalcular"]))
-            {
-             $peso=$_POST["peso"];   
-             $altura=$_POST["altura"];
-             $IMC=($peso/($altura * $altura));
+        <?php if(isset($_POST["botonCalcular"])): ?>
+        
+        <?php 
+           $peso=$_POST["peso"];   
+           $altura=$_POST["altura"];
+           $imc= round($peso/($altura * $altura),1);
 
-                echo("<br>");
-                echo ("Tu IMC es: ".$IMC);
-
-                if ($IMC<18.5) { $ESCALA="DELGADES SEVERA";} 
-                if (($IMC>=16)&&($IMC<17) ){ $ESCALA="DELGADEZ MODERADA";}
-                if (($IMC>=17)&&($IMC<18.5) ){ $ESCALA="DELGADEZ ACEPTABLE";}
-                if (($IMC>=18.5)&&($IMC<25) ){ $ESCALA="NORMAL";}
-                if (($IMC>=25)&&($IMC<30) ){ $ESCALA="PRE-OBESO";}
-                if (($IMC>=30)&&($IMC<35) ){ $ESCALA="OBESO TIPO 1";}
-                if (($IMC>=35)&&($IMC<40) ){ $ESCALA="OBESO TIPO 2";}
-                if ($IMC>=40){ $ESCALA="OBESO TIPO 3";}
-
-                echo ("<br>");
-                echo "Escala: </b>$escala";  
-            }
-        ?>
+           if ($imc<18.5) { 
+               $escala="Peso insuficiente";
+           } 
+           else if (($imc>=18.5)&&($imc<=24.9)){ 
+               $escala="Normopeso";
+           }
+           else if (($imc>=25)&&($imc<=26.9)){ 
+               $escala="Sobrepeso grado I";
+           }
+           else if (($imc>=27)&&($imc<=29.9)){
+               $escala="Sobrepreso grado II (preobesidad)";
+           }
+           else if (($imc>=30)&&($imc<=34.9)){ 
+               $escala="Obesidad de tipo I";
+           }
+           else if (($imc>=35)&&($imc<=39.9)){
+               $escala="Obesidad de tipo II";
+           }
+           else if (($imc>=40)&&($imc<=49.9) ){ 
+               $escala="Obesidad de tipo III (mórbida)";
+           }
+           else{ 
+               $escala="Obesidad de tipo IV (extrema)";
+           }
+       ?>
+       <br>
+       <h4 class="text-center">
+           <?php 
+            echo ("Tu IMC es: ".$imc);
+            echo ("<br>");
+            echo ("Escala: ".$escala); 
+           ?>
+       </h4>
+       <?php endif ?>
 
        
 
